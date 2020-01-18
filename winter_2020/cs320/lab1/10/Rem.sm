@@ -1,0 +1,13 @@
+PUSH 42
+PUSH 5
+put your code for remainder (%) in here
+  (note: don't cheat by making use of your knowledge of the specific arguments!)
+DUP 1  adding a 42 on top of the stack
+DUP 1  adding a 5 on top of the stack
+DIV    use the 42 and 5 we just duplicated to do interger division
+MUL    use the original 5 to time the result we got from the interger division
+NEG    use NEG + ADD to do subtraction
+ADD    use NEG + ADD to do subtraction
+PRINTI
+PUSH 10  newline
+PRINTC

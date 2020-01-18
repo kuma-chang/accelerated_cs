@@ -1,0 +1,172 @@
+PUSH 0       accumulator for the number we're building -- initially 0
+READC        get first character
+DUP 0        check to see if it is newline (10)
+PUSH -10     
+ADD          
+BEGIN        loop as long as not newline
+  PUSH -48   convert ascii digit to integer ('0' = 48)
+  ADD      
+  SWAP 1     accumulator = accumlator*10 + new digit
+  PUSH 10
+  MUL
+  ADD  
+  READC      get next character
+  DUP 0      once again, check for newline
+  PUSH -10
+  ADD
+END
+POP          get rid of last character we read (newline)
+
+now the int have been converted
+we enter the count up loop
+
+PUSH 1     Start from 1 and count up
+DUP 0      make a copy for BEGIN to pop and test
+BEGIN      begin of the count down loop
+
+now we need to push four numbers
+first: flag for not being multiple of 3 or 5
+second: result of the current % 3
+third: result of the current % 5
+fourth: result of the current % 15
+
+  PUSH 0   flag for not being multiple of 3 or 5, prints out the number when 0
+
+push the result of current % 3
+  DUP 1    copy the current so we could check %
+  PUSH 3   this block is for % 3
+  DUP 1  
+  DUP 1  
+  DIV    
+  MUL    
+  NEG    
+  ADD      we get the result of the %
+
+push the result of current % 5
+  DUP 2    copy the current so we could check %
+  PUSH 5   this block is for % 5
+  DUP 1  
+  DUP 1  
+  DIV    
+  MUL    
+  NEG    
+  ADD      we get the result of the %
+
+push the result of current % 15
+  DUP 3    copy the current so we could check %
+  PUSH 15   this block is for % 15
+  DUP 1  
+  DUP 1  
+  DIV    
+  MUL    
+  NEG    
+  ADD      we get the result of the %
+
+start with checking the result of % 15
+  PUSH 0
+  LEQ
+  BEGIN
+	PUSH 109 m
+	PUSH 97  a
+	PUSH 108 l
+	PUSH 70  F
+	PUSH 109 m
+	PUSH 105 i
+	PUSH 108 l
+    PUSH 70  F
+	PRINTC
+	PRINTC
+	PRINTC
+	PRINTC
+	PRINTC
+	PRINTC
+	PRINTC
+	PRINTC
+
+  change the flag for printing the number
+	SWAP 2
+	PUSH 1
+	ADD
+	SWAP 2
+	
+  change the flag for printing "flim"
+	SWAP 1
+	PUSH 1
+	ADD
+	SWAP 1
+
+  change the flag for printing "flam"
+	PUSH 1
+	ADD
+
+	PUSH 0
+  END
+
+
+now check the result of % 5 
+  PUSH 0
+  LEQ
+  BEGIN
+	PUSH 109 m
+	PUSH 97  a
+	PUSH 108 l
+	PUSH 70  F
+	PRINTC
+	PRINTC
+	PRINTC
+	PRINTC
+
+  change the flag for printing the number
+	SWAP 1
+	PUSH 1
+	ADD
+	SWAP 1
+
+	PUSH 0
+  END
+
+last check the result of % 3 
+  PUSH 0
+  LEQ
+  BEGIN
+	PUSH 109 m
+	PUSH 105 i
+	PUSH 108 l
+	PUSH 70  F
+	PRINTC
+	PRINTC
+	PRINTC
+	PRINTC
+
+  change the flag for printing the number
+	PUSH 1
+	ADD
+
+	PUSH 0
+  END
+
+if none of the result of % was 0 than print out the number
+  PUSH 0
+  LEQ
+  BEGIN
+    DUP 0    copy index counter  
+    PRINTI   so we can print it
+	PUSH 0
+  END
+
+  PUSH 10  newline 
+  PRINTC   print the newline
+  PUSH 1  now increment index
+  ADD
+  DUP 1    duplicate the max
+  DUP 1    duplicate the current
+  PUSH -1
+  ADD
+  NEG
+  ADD      if the max - (current - 1) = 0 then the count up loop would stop
+END        jumps back up to line 25
+we end up here when index counter reaches 0
+PUSH 10    newline
+PRINTC
+
+

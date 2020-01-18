@@ -1,0 +1,5 @@
+this is a test case when Program attempts to do an ADD when there are fewer than two elements on the stack
+PUSH 1
+ADD
+PUSH 10  newline
+PRINTC

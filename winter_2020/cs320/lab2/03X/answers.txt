@@ -1,0 +1,20 @@
+Put your answers in this file.
+
+(a)
+Start symbol: S
+S → ɛ | (S)S
+
+
+(b)
+Start symbol: S
+S → S+P | P
+P → P*Z | Z
+Z → A^Z | A
+A → (S) | n
+
+
+(c)
+Start symbol: S
+S → IE
+I → n | n,I
+E → ;

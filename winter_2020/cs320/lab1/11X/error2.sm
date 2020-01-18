@@ -1,0 +1,4 @@
+this is a test case when Program attempts to do a POP when there are no elements on the stack
+POP
+PUSH 1
+PRINTI

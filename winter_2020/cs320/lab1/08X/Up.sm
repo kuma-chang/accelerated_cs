@@ -1,0 +1,20 @@
+PUSH 10     Limit value n: the rest of the code should work for any value here, not just 10
+
+PUSH 1     Start from 1 and count up
+DUP 0      make a copy for BEGIN to pop and test
+BEGIN      begin of the count down loop
+
+  DUP 0    duplicate the current
+  PRINTI   so we can print it out
+
+  PUSH 10  newline 
+  PRINTC   print the newline
+  PUSH 1  now increment index
+  ADD
+  DUP 1    duplicate the max
+  DUP 1    duplicate the current
+  PUSH -1
+  ADD
+  NEG
+  ADD      if the limit - (current - 1) = 0 then the count up loop would stop
+END        jumps back up to line 5

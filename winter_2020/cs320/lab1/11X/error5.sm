@@ -1,0 +1,2 @@
+this is a test case when program gives a non-interger parameter value for a PUSH, DUP or SWAP instruction
+SWAP c

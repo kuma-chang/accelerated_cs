@@ -1,0 +1,70 @@
+Put your answers in this file.
+
+(a)
+For error kind 1:
+The program would throw an ArrayIndexOutOfBoundsException
+because the program is trying to access the second element
+
+
+For error kind 2:
+The count for stack in the SMinterp sp orginally is -1 to be top of the stack declare on line 47
+would become -2, which would cause the next PUSH not work properly
+But alone would not have any error message
+
+
+For error kind 3:
+There would be two cases
+1. the top of the stack is 0 when process BEGIN
+	in this case, the program would throw an ArrayIndexOutOfBoundsException because the program is wanting to skip the loop, 
+	in order to do that, it needs to keep find if the next line of code is "END"
+	eventually, it would look out of bounds
+2. the top of the stack is not 0 when process BEGIN
+	in this case, there would be no error message thrown
+	because the program would just kept on exacuting the next line of code until the last line,
+	and it would just end the program
+
+
+For error kind 4:
+There would be no error message thrown
+Because the program would not reconize the instruction,
+so it would just be treaten like comments
+
+
+For error kind 5:
+The program would throw an NumberFormatException
+because the program is expecting to have an int as an input
+
+
+(b)
+For error kind 1:
+The program would throw an ArrayIndexOutOfBoundsException
+At stage C
+
+
+For error kind 2:
+If there were PUSH following after POP
+then the program would thrown an ArrayIndexOutOfBoundsException
+At stage C
+But alone would not have any error message
+
+
+For error kind 3:
+No matter if the top is 0 or not when entering BEGIN
+the program would throw an error: reached end of file while parsing
+saying it is missing a "}"
+At stage B
+ 
+
+For error kind 4:
+There would be no error message thrown
+Because the program would not reconize the instruction,
+so it would just be treaten like comments
+
+
+For error kind 5:
+The program would throw an NumberFormatException
+because the program is expecting to have an int as an input
+At stage A
+
+
+
