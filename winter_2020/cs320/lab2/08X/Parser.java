@@ -146,8 +146,6 @@ class Parser {
   
   // comp    : comp <= expr
   //         | expr
-  // to avoid left-recursion, process this as
-  // expr : term { (+|-) term }
   private void parseComp() throws Failure {
     parseExpr();
     while (true) {
@@ -156,6 +154,8 @@ class Parser {
 	lexer.nextToken();
 	parseExpr();
 	emit("LEQ");
+	if(lexer.token == Token.LEQ)
+		throw new Failure("LEQ is nonassociative");
 	break;
       default:
 	return;
