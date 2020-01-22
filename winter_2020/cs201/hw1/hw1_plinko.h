@@ -2,6 +2,7 @@
 #define hw1_plinko_h
 
 #include <stdio.h>
+#include <string.h>
 
 
 
