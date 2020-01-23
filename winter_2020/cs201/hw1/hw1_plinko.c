@@ -93,10 +93,10 @@ int main(int argc, char* argv[])
 
 				//Get the start for test
 				current = GetRandom(1, (column - 2)); 
-				//printf("start: %d\n", current); //to print out the path
+				//printf("start: %d\n", current); //to print out the literal path
 				for(int i = 0; i < row; i++)
 				{
-						//printf("\n%d: %d\n", i-1, current); //to print out the path
+						//printf("\n%d: %d\n", i-1, current); //to print out the literal path
 						if(board[i][current] == '0')
 								current = current;
 						else
@@ -117,9 +117,9 @@ int main(int argc, char* argv[])
 												current = current - 1;
 								}
 						}
-						//board[i][current] = 'I'; //For printing out the path (remember to switch the repeat = 1)
+						//board[i][current] = 'I'; //For printing out the graphical path (remember to switch the repeat = 1)
 				}
-				//printf("\nend: %d\n", current); //to print out the path
+				//printf("\nend: %d\n", current); //to print out the literal path
 				table[current]++;
 		}
 
@@ -130,7 +130,7 @@ int main(int argc, char* argv[])
 		printf("\n");
 
 		/*
-		//Print out the board with the path
+		//Print out the board with the graphical path
 		//remember to switch the repeat = 1
 		printf("Board: \n");
 		for(int i = 0; i < row; i++)
