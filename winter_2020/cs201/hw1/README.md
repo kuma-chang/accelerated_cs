@@ -33,9 +33,11 @@ else
 		change current the other way
 ```
 * Record the result to the table
-* I have implemented code for when testing you could print out the path the ball went through, but remember to change the `repeat = 1` for it to work
+* I have implemented two function for testing
+> `monte_carlo_test` &#8594; for testing with repeats
+> `test_with_graphic_path`&#8594; only test once but prints out the path
 ```
-Board:
+Board(before):
 X00000X
 X0X0X0X
 X00000X
@@ -44,7 +46,7 @@ X00000X
 X0X0X0X
 X00000X
 
-Board:
+Board(after):
 X000I0X
 X0X0XIX
 X0000IX

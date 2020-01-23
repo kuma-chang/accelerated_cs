@@ -1,7 +1,7 @@
 #include "hw1_plinko.h"
+#include "board.h"
+#include "monte_carlo_test.h"
 
-//include the .h that were given
-#include "hw1given.h"
 
 
 
@@ -10,22 +10,14 @@ int main(int argc, char* argv[])
 		InitRandom(); //enable GetRandom()
 		FILE *fp = NULL; //file pointer for the board
 		const int SIZE = 500;
-		int row = 0;
-		int column = 0;
+		int *row = (int*)malloc(sizeof(int));
+		int *column = (int*)malloc(sizeof(int));
 		int repeat = 10000; //to control howmany repeat the test goes
-		int current = 0; //to keep track of the ball's position
+		//int current = 0; //to keep track of the ball's position
 		float *table;  //to keep track of each result
 		char buffer[SIZE];
 		char **board;
 
-
-		/*
-		//Test for argc & argv
-		for(int i = 0; i < argc; i++)
-		{
-				printf("Argument %d: %s\n", i, argv[i]);
-		}
-		   */
 
 		//Open file to get the board
 		if(argc > 1)
@@ -43,40 +35,58 @@ int main(int argc, char* argv[])
 		//Get the row and column by parsing the first line
 		fgets(buffer, SIZE, fp);
 		printf("The board size is: %s\n", buffer);
+		get_row_n_column(column, row, buffer);
 
-		for(int i = 0; i < 2; i++)
-		{
-				if(i == 0)
-						column = strtol(strtok(buffer, ","), NULL, 10);
-				else if(i == 1)
-						row = strtol(strtok(NULL, ","), NULL, 10);
-		}
-		printf("column: %d\n", column);
-		printf("row: %d\n", row);
+
 
 		//Read in board
-		board = (char**)malloc(sizeof(char*)*row);
-		for(int i = 0; i < row; i++)
-		{
-				board[i] = (char*)malloc(sizeof(char)*column);
-				fgets(board[i], SIZE, fp);
-		}
+		board = creat_board(*column, *row, fp);
+
 
 
 		//Creat the table
-		table = (float*)malloc(sizeof(float)*column);
-		for(int i = 0; i < column; i++)
+		table = (float*)malloc(sizeof(float)* *column);
+		for(int i = 0; i < *column; i++)
 				table[i] = 0; //initializing the table to all 0
 
+
+
 		//Print out the board
-		printf("Board: \n");
-		for(int i = 0; i < row; i++)
-				printf("%s", board[i]);
-		printf("\n");
+		print_board(board, *row);
+
+
 
 		//Close the file after we got the board
 		fclose(fp);
 
+
+
+		//Enter the loop for testing
+		table = monte_carlo_test(board, table, *column, *row, repeat);
+
+		//Print out the board with the graphical path
+		//test_with_graphic_path(board, table, *column, *row);
+
+
+
+		//Print out the table
+		print_table(table, *column, repeat);
+
+		//free the board
+		for(int i = 0; i < *row; i++)
+				free(board[i]);
+		free(board);
+		free(table);
+		free(row);
+		free(column);
+
+		/*
+		//Test for argc & argv
+		for(int i = 0; i < argc; i++)
+		{
+				printf("Argument %d: %s\n", i, argv[i]);
+		}
+		   */
 
 		//Test GetRandom()
 		//let i & j be between 1 and 5
@@ -86,64 +96,6 @@ int main(int argc, char* argv[])
 		   j = GetRandom(1,5);
 		   printf("i = %d, j = %d\n", i, j);
 		   */
-
-		//Enter the loop for testing
-		for(int i = 0; i < repeat; i++)
-		{
-
-				//Get the start for test
-				current = GetRandom(1, (column - 2)); 
-				//printf("start: %d\n", current); //to print out the literal path
-				for(int i = 0; i < row; i++)
-				{
-						//printf("\n%d: %d\n", i-1, current); //to print out the literal path
-						if(board[i][current] == '0')
-								current = current;
-						else
-						{
-								int l_or_r = GetRandom(0,1);
-								if(l_or_r == 0) //try going left
-								{
-										if(board[i][current-1] == '0')
-												current = current - 1;
-										else
-												current = current + 1;
-								}
-								else
-								{
-										if(board[i][current+1] == '0')
-												current = current + 1;
-										else
-												current = current - 1;
-								}
-						}
-						//board[i][current] = 'I'; //For printing out the graphical path (remember to switch the repeat = 1)
-				}
-				//printf("\nend: %d\n", current); //to print out the literal path
-				table[current]++;
-		}
-
-		//Print out the table
-		printf("\nTABLE: ");
-		for(int i = 0; i < column; i++)
-				printf("\nSlot %d: %.3f", i, table[i]/repeat);
-		printf("\n");
-
-		/*
-		//Print out the board with the graphical path
-		//remember to switch the repeat = 1
-		printf("Board: \n");
-		for(int i = 0; i < row; i++)
-				printf("%s", board[i]);
-		printf("\n");
-		*/
-
-
-		//free the board
-		for(int i = 0; i < row; i++)
-				free(board[i]);
-		free(board);
-		free(table);
 
 		return 0;
 }

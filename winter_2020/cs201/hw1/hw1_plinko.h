@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <string.h>
 
+//include the .h that were given
+#include "hw1given.h"
 
 
 
