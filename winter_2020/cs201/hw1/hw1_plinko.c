@@ -72,6 +72,8 @@ int main(int argc, char* argv[])
 		//Print out the table
 		print_table(table, *column, repeat);
 
+
+
 		//free the board
 		for(int i = 0; i < *row; i++)
 				free(board[i]);

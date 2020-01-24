@@ -1,3 +1,22 @@
+class Example 
+{
+
+	static boolean f(int i) 
+	{
+		return (i > 0 && i < 1000 && i % 2 != 0);
+	}
+
+	public static void main(String argv[]) 
+	{
+		int i = Integer.parseInt(argv[0]);
+		boolean b = f(i);
+		System.out.println(b);
+	}
+}
+
+
+
+/*
 class Example {
   
   static boolean f(int i) {
@@ -23,3 +42,4 @@ class Example {
     System.out.println(b);
   }
 }
+*/
