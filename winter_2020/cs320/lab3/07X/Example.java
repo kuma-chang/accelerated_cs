@@ -8,9 +8,9 @@ class T {
     this.x = x; this.left = left; this.right = right;
   }
 
-  int sum () {
-    return x + (left != null ? left.sum() : 0)
-             + (right != null ? right.sum() : 0);
+  int size () {
+    return 1 + (left != null ? left.size() : 0)
+             + (right != null ? right.size() : 0);
   }
 }
 
@@ -21,7 +21,7 @@ class Example {
                     new T(4, null, 
                              new T(3, null, 
                                       null)));
-    System.out.println ("sum = " + t.sum());
+    System.out.println ("size = " + t.size());
   }
 
 }
