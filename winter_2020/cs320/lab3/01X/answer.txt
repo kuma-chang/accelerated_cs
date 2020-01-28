@@ -1,18 +1,41 @@
+1. compile condition:
+	 g++ -O0 -o example example.cpp
+
+		 input:
+			 ./example 147483647
+		 output:
+			 147483647 <= 2147483647
+Here we see the integer is still in rang so the program output normally
+
+		 input:
+			 ./example 147483648
+		 output:
+			 147483648 > -2147483648
+Here we notice the interger was ment to be 2147483648 after the addition
+However due to it is out of the range for a 32 bit interger
+And the intergers are represented by two's complement
+So instead of becoming 2147483648 it round up and become -2147483648
 
 
- g++ -O0 -o example example.cpp
- ./example 147483647
-147483647 <= 2147483647
 
- ./example 147483648
-147483648 > -2147483648
+2. compile condition:
+	 g++ -O2 -o example example.cpp
 
+		 input:
+			 ./example 147483647
+		 output:
+			 147483647 <= 2147483647
+Here we see the integer is still in rang so the program output normally
 
-
- g++ -O2 -o example example.cpp
- ./example 147483647
-147483647 <= 2147483647
-
- ./example 147483648
-147483648 <= -2147483648
+		 input:
+			 ./example 147483648
+		 output:
+			 147483648 <= -2147483648
+Here we could notice that the int is still being print out as the round up -2147483648
+However it is also showing 147483648 is less than -2147483648 
+which would make sense if the addition worked properly
+What is possible is with the optimization, the int was reconize being out of 32 bit range
+And was switch to a 64 bit range which is what was used to compare with 147483648
+But when we were trying to use "cout" this function is still just reconizing it as a 32 bit int
+So that's why it's still being print out as -2147483648
 

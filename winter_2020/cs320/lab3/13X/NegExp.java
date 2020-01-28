@@ -4,8 +4,8 @@ class NegExp extends Exp {
 
 
 	void emit() {
-      System.out.println("NEG");
 			self.emit();
+      System.out.println("NEG");
 	}
 
   int eval() {

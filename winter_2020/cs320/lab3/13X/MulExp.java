@@ -5,9 +5,9 @@ class MulExp extends Exp {
 
 
 	void emit() {
-      System.out.println("MUL");
 			left.emit();
 			right.emit();
+      System.out.println("MUL");
 	}
 
 

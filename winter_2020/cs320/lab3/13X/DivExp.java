@@ -4,9 +4,9 @@ class DivExp extends Exp {
   DivExp (Exp left, Exp right) {this.left = left; this.right = right;}
 
 	void emit() {
-      System.out.println("DIV");
 			left.emit();
 			right.emit();
+      System.out.println("DIV");
 	}
 
   int eval() {

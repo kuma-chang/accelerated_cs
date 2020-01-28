@@ -5,9 +5,9 @@ class AddExp extends Exp {
 
 
 	void emit() {
-      System.out.println("ADD");
 			left.emit();
 			right.emit();
+      System.out.println("ADD");
 	}
 
 
