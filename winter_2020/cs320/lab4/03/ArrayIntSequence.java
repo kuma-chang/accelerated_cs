@@ -11,11 +11,12 @@ public class ArrayIntSequence implements IntSequence {
 
   // Double the array size whenever we run out of room.
   // (This can save exponential time at the cost of up to 2X wasted space.)
-  private void ensureOneMore() {
+  void ensureOneMore() {
     if (size >= contents.length) {
       int newCapacity = contents.length * 2;
       contents = java.util.Arrays.copyOf(contents,newCapacity);
     }
+    System.out.println("I'm good!");
   }    
 
   public void append(int e) {

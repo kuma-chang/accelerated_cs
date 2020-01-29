@@ -4,9 +4,9 @@ class IntSequenceTest {
     String implementation = argv[0];
     int appends = Integer.parseInt(argv[1]);
     int prepends = Integer.parseInt(argv[2]);
-    IntSequence seq = null;
+    ArrayIntSequence seq = null;
     if (implementation.equals("list"))
-      seq = new ListIntSequence();
+      seq = new ArrayIntSequence();
     else if (implementation.equals("array"))
       seq = new ArrayIntSequence();
     for (int i = 0; i < appends; i++) 
