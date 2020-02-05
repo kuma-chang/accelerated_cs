@@ -1,0 +1,121 @@
+1. For arrays, prepending is much slower than appending. 
+*Parameter used:
+	time java IntSequenceTimer array 10000 1500 0 0
+	time java IntSequenceTimer array 10000 0 1500 0
+
+*Expect result and reason:
+	I expect for arrays, prepending is much slower than appending
+	due to prepending need to copy the whole array to a new array 
+	in order to make room for the data to prepend.
+
+*Timing obtained:
+	time java IntSequenceTimer array 10000 1500 0 0
+		real	0m0.432s
+		user	0m0.347s
+		sys	0m0.183s
+		user + sys time = 0m0.530s
+
+	time java IntSequenceTimer array 10000 0 1500 0
+		real	0m3.507s
+		user	0m3.358s
+		sys	0m0.222s
+		user + sys time = 0m3.580s
+
+*Written analysis:
+	time difference: 3.580s/0.530s = 6.754
+	The result shows as we expected, for arrays, prepending 
+	is much slower than appending.
+
+================================================================================
+
+2. For lists, prepending and appending are roughly the same speed. 
+*Parameter used:
+	time java IntSequenceTimer list 10000 1500 0 0
+	time java IntSequenceTimer list 10000 0 1500 0
+
+*Expect result and reason:
+	I expect for list, prepending and appending are roughly the 
+	same speed, because the implimentation is a doubly link list, 
+	so none of them would need to traversal through the list.
+
+*Timing obtained:
+	time java IntSequenceTimer list 10000 1500 0 0
+		real	0m0.580s
+		user	0m0.353s
+		sys	0m0.324s
+		user + sys time = 0m0.677s
+
+	time java IntSequenceTimer list 10000 0 1500 0
+		real	0m0.633s
+		user	0m0.379s
+		sys	0m0.281s
+		user + sys time = 0m0.660s
+
+*Written analysis:
+	time difference: 0.677s/0.660s = 1.025
+	The result shows as we expected, for list, prepending
+	and appending are roughly the same speed.
+
+================================================================================
+
+3. Prepending is much faster in the list implementation than in the array implementation. 
+*Parameter used:
+	time java IntSequenceTimer list 10000 0 1500 0
+	time java IntSequenceTimer array 10000 0 1500 0
+
+*Expect result and reason:
+	I expect the list's prepending woudl be faster than array's,
+	because for list implementation it just need to add another 
+	node at the start of the link list, while array implementation
+	needs to copy the whole list.
+
+*Timing obtained:
+	time java IntSequenceTimer list 10000 0 1500 0
+		real	0m0.542s
+		user	0m0.397s
+		sys	0m0.233s
+		user + sys time = 0m0.630s
+
+	time java IntSequenceTimer array 10000 0 1500 0
+		real	0m3.523s
+		user	0m3.335s
+		sys	0m0.276s
+		user + sys time = 0m3.611s
+
+*Written analysis:
+	time difference: 3.611s/0.630s = 5.731
+	The result shows as we expected, prepending is much faster
+	in the list implementation than in the array implementation.
+
+================================================================================
+
+4. Appending is roughly the same speed for both implementations.
+*Parameter used:
+	time java IntSequenceTimer list 10000 1500 0 0
+	time java IntSequenceTimer array 10000 1500 0 0
+
+*Expect result and reason:
+	I expect the appending speed for both implementations are roughly
+	the same, because they both only have simple procedure, one is allocatin
+	a new node, and one is direct access to the index of the array while occasionally
+	coping the array.
+
+*Timing obtained:
+	time java IntSequenceTimer list 10000 1500 0 0
+		real	0m0.514s
+		user	0m0.395s
+		sys	0m0.251s
+		user + sys time = 0m0.646s
+
+	time java IntSequenceTimer array 10000 1500 0 0
+		real	0m0.477s
+		user	0m0.323s
+		sys	0m0.224s
+		user + sys time = 0m0.547s
+
+*Written analysis:
+	time difference: 0.646s/0.547s = 1.180
+	The result shows as we expected, the appending is roughly
+	theh same speed for both implementaitons.
+
+

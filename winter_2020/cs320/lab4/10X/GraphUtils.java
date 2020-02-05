@@ -53,10 +53,15 @@ public abstract class GraphUtils {
 
   public static <V> void toDot(Graph <V> g, String gname) throws Exception {
     java.io.PrintStream out = new java.io.PrintStream(gname + ".dot");
+		Set<V> visited = new HashSet<V>();
     out.println("graph " + gname  + " {");
     for (V v : g.vertices()) 
       for (V w : g.neighbors(v)) 
-        out.println("\"" + v + "\" -- \"" + w + "\"");
+			{
+				if(!visited.contains(w))
+					out.println("\"" + v + "\" -- \"" + w + "\"");
+				visited.add(v);
+			}
     out.println("}");
     out.close();
   }
