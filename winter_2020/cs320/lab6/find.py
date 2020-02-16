@@ -22,14 +22,18 @@ def find(root, filename):
 
 
 def copy(found, new_dir):
+    file_names = []
+    print("need to creat new dir: ", new_dir)
     path = os.getcwd()
-    path = path + "/" + new_dir
-    access_rights = 0o755
-    os.mkdir(path , access_rights)
+    print ("The current working directory is ", path)
+    print("has to copy the following files: ")
     for each_file in found:
         file_name = each_file.replace('/', '', 1)
         file_name = file_name.replace('/', '_')
-        shutil.copyfile(each_file, path + '/' + file_name)
+        file_names.append(file_name)
+        print("s: ", each_file)
+        print("f: ", file_name)
+    print(file_names)
 
 
 
