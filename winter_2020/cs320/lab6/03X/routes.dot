@@ -1,9 +1,11 @@
 graph routes {
+"JFK" -- "JFK"
 "JFK" -- "MCO"
 "JFK" -- "ATL"
 "JFK" -- "ORD"
 "MCO" -- "ATL"
 "MCO" -- "HOU"
+"ORD" -- "ORD"
 "ORD" -- "DEN"
 "ORD" -- "HOU"
 "ORD" -- "DFW"
@@ -13,9 +15,11 @@ graph routes {
 "DEN" -- "LAS"
 "HOU" -- "ATL"
 "HOU" -- "DFW"
+"DFW" -- "DFW"
 "DFW" -- "PHX"
 "PHX" -- "LAX"
 "PHX" -- "LAS"
 "LAX" -- "LAS"
+"STL" -- "STL"
 "STL" -- "PDX"
 }

@@ -9,17 +9,12 @@ import os.path
 # read_integer_graph()
 def read_integer_graph(gname):
     graph = {}
-    int_list = []
     with open(gname + ".ig", 'r') as input_file:
         for line in input_file:
             words = line.split()
-            for word in words:
-                int_list.append(word)
-        for i in range(len(int_list) - 2):
-            if i % 2 == 0:
-                v1 = int_list[i+2]
-            else:
-                v2 = int_list[i+2]
+            if len(words) > 1:
+                v1 = words[0]
+                v2 = words[1]
                 if v1 in graph:
                     graph[v1].append(v2)
                 else:
@@ -33,25 +28,23 @@ def read_integer_graph(gname):
 # read_string_graph()
 def read_string_graph(gname, sep):
     graph = {}
-    int_list = []
     with open(gname + ".sg", 'r') as input_file:
         for line in input_file:
-            words = line.split()
-            for word in words:
-                int_list.append(word)
-        for i in range(len(int_list)):
-            if i % 2 == 0:
-                v1 = int_list[i]
-            else:
-                v2 = int_list[i]
-                if v1 in graph:
-                    graph[v1].append(v2)
+            print("line: ", line)
+            words = line.split('\n')[0].split(sep)
+            print("words: ", words)
+            for i in range(len(words)):
+                if words[0] in graph:
+                    if not words[i] in graph[words[0]]:
+                        graph[words[0]].append(words[i])
                 else:
-                    graph[v1] = [v2]
-                if v2 in graph:
-                    graph[v2].append(v1)
+                    graph[words[0]] = []
+                if words[i] in graph:
+                    if not words[0] in graph[words[i]]:
+                        graph[words[i]].append(words[0])
                 else:
-                    graph[v2] = [v1]
+                    graph[words[i]] = [words[0]]
+    print(graph)
     return graph
 
 #
