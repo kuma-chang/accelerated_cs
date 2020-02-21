@@ -45,27 +45,35 @@ set wildmenu
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/accelerated_cs/winter_2020/cs320/lab7/02
+cd ~/accelerated_cs/winter_2020/cs320/lab7/03X
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 LetExp.java
+badd +1 AddExp.java
+badd +1 DivExp.java
+badd +1 Exp.java
 badd +1 IdExp.java
-badd +1 Env.java
-badd +0 Lexer.java
-badd +0 Parser.java
-badd +0 Token.java
-badd +0 Exp.java
-badd +0 AddExp.java
-badd +0 Driver.java
+badd +1 LetExp.java
+badd +1 MulExp.java
+badd +1 NegExp.java
+badd +1 NumExp.java
+badd +1 SubExp.java
+badd +1 Driver.java
+badd +0 Env.java
 argglobal
 silent! argdel *
-$argadd LetExp.java
+$argadd AddExp.java
+$argadd DivExp.java
+$argadd Exp.java
 $argadd IdExp.java
-$argadd Env.java
+$argadd LetExp.java
+$argadd MulExp.java
+$argadd NegExp.java
+$argadd NumExp.java
+$argadd SubExp.java
 set stal=2
-edit LetExp.java
+edit AddExp.java
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -219,13 +227,13 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 24) / 48)
+let s:l = 4 - ((3 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
+4
 normal! 0
-tabedit IdExp.java
+tabedit DivExp.java
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -386,7 +394,7 @@ exe s:l
 normal! zt
 1
 normal! 0
-tabedit Env.java
+tabedit Exp.java
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -541,20 +549,20 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 30 - ((29 * winheight(0) + 24) / 48)
+let s:l = 2 - ((1 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-30
-normal! 02|
-tabedit Lexer.java
+2
+normal! 0
+tabedit IdExp.java
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
 wincmd t
 set winminheight=1 winheight=1 winminwidth=1 winwidth=1
 argglobal
-if bufexists('Lexer.java') | buffer Lexer.java | else | edit Lexer.java | endif
+4argu
 let s:cpo_save=&cpo
 set cpo&vim
 inoremap <buffer> <silent> <BS> =AutoPairsDelete()
@@ -562,6 +570,7 @@ inoremap <buffer> <silent> § =AutoPairsMoveCharacter('''')
 inoremap <buffer> <silent> ¢ =AutoPairsMoveCharacter('"')
 inoremap <buffer> <silent> © =AutoPairsMoveCharacter(')')
 inoremap <buffer> <silent> ¨ =AutoPairsMoveCharacter('(')
+inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
 inoremap <buffer> <silent> î :call AutoPairsJump()a
 inoremap <buffer> <silent> <expr> ð AutoPairsToggle()
 inoremap <buffer> <silent> â =AutoPairsBackInsert()
@@ -701,20 +710,20 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 106 - ((47 * winheight(0) + 24) / 48)
+let s:l = 10 - ((9 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-106
-normal! 0
-tabedit Parser.java
+10
+normal! 04|
+tabedit LetExp.java
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
 wincmd t
 set winminheight=1 winheight=1 winminwidth=1 winwidth=1
 argglobal
-if bufexists('Parser.java') | buffer Parser.java | else | edit Parser.java | endif
+5argu
 let s:cpo_save=&cpo
 set cpo&vim
 inoremap <buffer> <silent> <BS> =AutoPairsDelete()
@@ -722,6 +731,7 @@ inoremap <buffer> <silent> § =AutoPairsMoveCharacter('''')
 inoremap <buffer> <silent> ¢ =AutoPairsMoveCharacter('"')
 inoremap <buffer> <silent> © =AutoPairsMoveCharacter(')')
 inoremap <buffer> <silent> ¨ =AutoPairsMoveCharacter('(')
+inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
 inoremap <buffer> <silent> î :call AutoPairsJump()a
 inoremap <buffer> <silent> <expr> ð AutoPairsToggle()
 inoremap <buffer> <silent> â =AutoPairsBackInsert()
@@ -861,180 +871,20 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 42 - ((20 * winheight(0) + 24) / 48)
+let s:l = 12 - ((11 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-42
-normal! 0
-tabedit Token.java
+12
+normal! 03|
+tabedit Env.java
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
 wincmd t
 set winminheight=1 winheight=1 winminwidth=1 winwidth=1
 argglobal
-if bufexists('Token.java') | buffer Token.java | else | edit Token.java | endif
-let s:cpo_save=&cpo
-set cpo&vim
-inoremap <buffer> <silent> <BS> =AutoPairsDelete()
-inoremap <buffer> <silent> § =AutoPairsMoveCharacter('''')
-inoremap <buffer> <silent> ¢ =AutoPairsMoveCharacter('"')
-inoremap <buffer> <silent> © =AutoPairsMoveCharacter(')')
-inoremap <buffer> <silent> ¨ =AutoPairsMoveCharacter('(')
-inoremap <buffer> <silent> î :call AutoPairsJump()a
-inoremap <buffer> <silent> <expr> ð AutoPairsToggle()
-inoremap <buffer> <silent> â =AutoPairsBackInsert()
-inoremap <buffer> <silent> å =AutoPairsFastWrap()
-inoremap <buffer> <silent> ý =AutoPairsMoveCharacter('}')
-inoremap <buffer> <silent> û =AutoPairsMoveCharacter('{')
-inoremap <buffer> <silent> Ý =AutoPairsMoveCharacter(']')
-inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
-inoremap <buffer> <silent>  =AutoPairsDelete()
-inoremap <buffer> <silent>   =AutoPairsSpace()
-inoremap <buffer> <silent> " =AutoPairsInsert('"')
-inoremap <buffer> <silent> ' =AutoPairsInsert('''')
-inoremap <buffer> <silent> ( =AutoPairsInsert('(')
-inoremap <buffer> <silent> ) =AutoPairsInsert(')')
-noremap <buffer> <silent> î :call AutoPairsJump()
-noremap <buffer> <silent> ð :call AutoPairsToggle()
-inoremap <buffer> <silent> [ =AutoPairsInsert('[')
-inoremap <buffer> <silent> ] =AutoPairsInsert(']')
-inoremap <buffer> <silent> ` =AutoPairsInsert('`')
-inoremap <buffer> <silent> { =AutoPairsInsert('{')
-inoremap <buffer> <silent> } =AutoPairsInsert('}')
-let &cpo=s:cpo_save
-unlet s:cpo_save
-setlocal keymap=
-setlocal noarabic
-setlocal autoindent
-setlocal backupcopy=
-setlocal balloonexpr=
-setlocal nobinary
-setlocal nobreakindent
-setlocal breakindentopt=
-setlocal bufhidden=
-setlocal buflisted
-setlocal buftype=
-setlocal cindent
-setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
-setlocal cinoptions=j1
-setlocal cinwords=if,else,while,do,for,switch
-setlocal colorcolumn=
-setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
-setlocal commentstring=//%s
-setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
-setlocal completefunc=
-setlocal nocopyindent
-setlocal cryptmethod=
-setlocal nocursorbind
-set cursorcolumn
-setlocal cursorcolumn
-set cursorline
-setlocal cursorline
-setlocal define=
-setlocal dictionary=
-setlocal nodiff
-setlocal equalprg=
-setlocal errorformat=
-setlocal noexpandtab
-if &filetype != 'java'
-setlocal filetype=java
-endif
-setlocal fixendofline
-setlocal foldcolumn=0
-setlocal foldenable
-setlocal foldexpr=0
-setlocal foldignore=#
-setlocal foldlevel=0
-setlocal foldmarker={{{,}}}
-setlocal foldmethod=manual
-setlocal foldminlines=1
-setlocal foldnestmax=20
-setlocal foldtext=foldtext()
-setlocal formatexpr=
-setlocal formatoptions=croql
-setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal formatprg=
-setlocal grepprg=
-setlocal iminsert=0
-setlocal imsearch=-1
-setlocal include=
-setlocal includeexpr=substitute(v:fname,'\\.','/','g')
-setlocal indentexpr=GetJavaIndent()
-setlocal indentkeys=0{,0},:,0#,!^F,o,O,e,0=extends,0=implements
-setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=
-setlocal nolinebreak
-setlocal nolisp
-setlocal lispwords=
-setlocal nolist
-setlocal makeencoding=
-setlocal makeprg=
-setlocal matchpairs=(:),{:},[:]
-setlocal modeline
-setlocal modifiable
-setlocal nrformats=bin,octal,hex
-set number
-setlocal number
-setlocal numberwidth=4
-setlocal omnifunc=
-setlocal path=
-setlocal nopreserveindent
-setlocal nopreviewwindow
-setlocal quoteescape=\\
-setlocal noreadonly
-setlocal norelativenumber
-setlocal norightleft
-setlocal rightleftcmd=search
-setlocal noscrollbind
-setlocal shiftwidth=2
-setlocal noshortname
-setlocal signcolumn=auto
-setlocal nosmartindent
-setlocal softtabstop=2
-setlocal nospell
-setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
-setlocal spellfile=
-setlocal spelllang=en
-setlocal statusline=%!Pl#Statusline(0,0)
-setlocal suffixesadd=.java
-setlocal swapfile
-setlocal synmaxcol=3000
-if &syntax != 'java'
-setlocal syntax=java
-endif
-setlocal tabstop=2
-setlocal tagcase=
-setlocal tags=
-setlocal termkey=
-setlocal termsize=
-setlocal textwidth=0
-setlocal thesaurus=
-setlocal noundofile
-setlocal undolevels=-123456
-setlocal nowinfixheight
-setlocal nowinfixwidth
-setlocal wrap
-setlocal wrapmargin=0
-silent! normal! zE
-let s:l = 9 - ((8 * winheight(0) + 24) / 48)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-9
-normal! 0
-tabedit Exp.java
-set splitbelow splitright
-set nosplitbelow
-set nosplitright
-wincmd t
-set winminheight=1 winheight=1 winminwidth=1 winwidth=1
-argglobal
-if bufexists('Exp.java') | buffer Exp.java | else | edit Exp.java | endif
+if bufexists('Env.java') | buffer Env.java | else | edit Env.java | endif
 let s:cpo_save=&cpo
 set cpo&vim
 inoremap <buffer> <silent> <BS> =AutoPairsDelete()
@@ -1181,20 +1031,20 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 5 - ((4 * winheight(0) + 24) / 48)
+let s:l = 1 - ((0 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-5
+1
 normal! 0
-tabedit AddExp.java
+tabedit MulExp.java
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
 wincmd t
 set winminheight=1 winheight=1 winminwidth=1 winwidth=1
 argglobal
-if bufexists('AddExp.java') | buffer AddExp.java | else | edit AddExp.java | endif
+6argu
 let s:cpo_save=&cpo
 set cpo&vim
 inoremap <buffer> <silent> <BS> =AutoPairsDelete()
@@ -1202,166 +1052,7 @@ inoremap <buffer> <silent> § =AutoPairsMoveCharacter('''')
 inoremap <buffer> <silent> ¢ =AutoPairsMoveCharacter('"')
 inoremap <buffer> <silent> © =AutoPairsMoveCharacter(')')
 inoremap <buffer> <silent> ¨ =AutoPairsMoveCharacter('(')
-inoremap <buffer> <silent> î :call AutoPairsJump()a
-inoremap <buffer> <silent> <expr> ð AutoPairsToggle()
-inoremap <buffer> <silent> â =AutoPairsBackInsert()
-inoremap <buffer> <silent> å =AutoPairsFastWrap()
-inoremap <buffer> <silent> ý =AutoPairsMoveCharacter('}')
-inoremap <buffer> <silent> û =AutoPairsMoveCharacter('{')
-inoremap <buffer> <silent> Ý =AutoPairsMoveCharacter(']')
 inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
-inoremap <buffer> <silent>  =AutoPairsDelete()
-inoremap <buffer> <silent>   =AutoPairsSpace()
-inoremap <buffer> <silent> " =AutoPairsInsert('"')
-inoremap <buffer> <silent> ' =AutoPairsInsert('''')
-inoremap <buffer> <silent> ( =AutoPairsInsert('(')
-inoremap <buffer> <silent> ) =AutoPairsInsert(')')
-noremap <buffer> <silent> î :call AutoPairsJump()
-noremap <buffer> <silent> ð :call AutoPairsToggle()
-inoremap <buffer> <silent> [ =AutoPairsInsert('[')
-inoremap <buffer> <silent> ] =AutoPairsInsert(']')
-inoremap <buffer> <silent> ` =AutoPairsInsert('`')
-inoremap <buffer> <silent> { =AutoPairsInsert('{')
-inoremap <buffer> <silent> } =AutoPairsInsert('}')
-let &cpo=s:cpo_save
-unlet s:cpo_save
-setlocal keymap=
-setlocal noarabic
-setlocal autoindent
-setlocal backupcopy=
-setlocal balloonexpr=
-setlocal nobinary
-setlocal nobreakindent
-setlocal breakindentopt=
-setlocal bufhidden=
-setlocal buflisted
-setlocal buftype=
-setlocal cindent
-setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
-setlocal cinoptions=j1
-setlocal cinwords=if,else,while,do,for,switch
-setlocal colorcolumn=
-setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
-setlocal commentstring=//%s
-setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
-setlocal completefunc=
-setlocal nocopyindent
-setlocal cryptmethod=
-setlocal nocursorbind
-set cursorcolumn
-setlocal cursorcolumn
-set cursorline
-setlocal cursorline
-setlocal define=
-setlocal dictionary=
-setlocal nodiff
-setlocal equalprg=
-setlocal errorformat=
-setlocal noexpandtab
-if &filetype != 'java'
-setlocal filetype=java
-endif
-setlocal fixendofline
-setlocal foldcolumn=0
-setlocal foldenable
-setlocal foldexpr=0
-setlocal foldignore=#
-setlocal foldlevel=0
-setlocal foldmarker={{{,}}}
-setlocal foldmethod=manual
-setlocal foldminlines=1
-setlocal foldnestmax=20
-setlocal foldtext=foldtext()
-setlocal formatexpr=
-setlocal formatoptions=croql
-setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal formatprg=
-setlocal grepprg=
-setlocal iminsert=0
-setlocal imsearch=-1
-setlocal include=
-setlocal includeexpr=substitute(v:fname,'\\.','/','g')
-setlocal indentexpr=GetJavaIndent()
-setlocal indentkeys=0{,0},:,0#,!^F,o,O,e,0=extends,0=implements
-setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=
-setlocal nolinebreak
-setlocal nolisp
-setlocal lispwords=
-setlocal nolist
-setlocal makeencoding=
-setlocal makeprg=
-setlocal matchpairs=(:),{:},[:]
-setlocal modeline
-setlocal modifiable
-setlocal nrformats=bin,octal,hex
-set number
-setlocal number
-setlocal numberwidth=4
-setlocal omnifunc=
-setlocal path=
-setlocal nopreserveindent
-setlocal nopreviewwindow
-setlocal quoteescape=\\
-setlocal noreadonly
-setlocal norelativenumber
-setlocal norightleft
-setlocal rightleftcmd=search
-setlocal noscrollbind
-setlocal shiftwidth=2
-setlocal noshortname
-setlocal signcolumn=auto
-setlocal nosmartindent
-setlocal softtabstop=2
-setlocal nospell
-setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
-setlocal spellfile=
-setlocal spelllang=en
-setlocal statusline=%!Pl#Statusline(0,0)
-setlocal suffixesadd=.java
-setlocal swapfile
-setlocal synmaxcol=3000
-if &syntax != 'java'
-setlocal syntax=java
-endif
-setlocal tabstop=2
-setlocal tagcase=
-setlocal tags=
-setlocal termkey=
-setlocal termsize=
-setlocal textwidth=0
-setlocal thesaurus=
-setlocal noundofile
-setlocal undolevels=-123456
-setlocal nowinfixheight
-setlocal nowinfixwidth
-setlocal wrap
-setlocal wrapmargin=0
-silent! normal! zE
-let s:l = 4 - ((3 * winheight(0) + 24) / 48)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-4
-normal! 0
-tabedit Driver.java
-set splitbelow splitright
-set nosplitbelow
-set nosplitright
-wincmd t
-set winminheight=1 winheight=1 winminwidth=1 winwidth=1
-argglobal
-if bufexists('Driver.java') | buffer Driver.java | else | edit Driver.java | endif
-let s:cpo_save=&cpo
-set cpo&vim
-inoremap <buffer> <silent> <BS> =AutoPairsDelete()
-inoremap <buffer> <silent> § =AutoPairsMoveCharacter('''')
-inoremap <buffer> <silent> ¢ =AutoPairsMoveCharacter('"')
-inoremap <buffer> <silent> © =AutoPairsMoveCharacter(')')
-inoremap <buffer> <silent> ¨ =AutoPairsMoveCharacter('(')
 inoremap <buffer> <silent> î :call AutoPairsJump()a
 inoremap <buffer> <silent> <expr> ð AutoPairsToggle()
 inoremap <buffer> <silent> â =AutoPairsBackInsert()
@@ -1507,7 +1198,651 @@ exe s:l
 normal! zt
 1
 normal! 0
-tabnext 7
+tabedit NegExp.java
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=1 winheight=1 winminwidth=1 winwidth=1
+argglobal
+7argu
+let s:cpo_save=&cpo
+set cpo&vim
+inoremap <buffer> <silent> <BS> =AutoPairsDelete()
+inoremap <buffer> <silent> § =AutoPairsMoveCharacter('''')
+inoremap <buffer> <silent> ¢ =AutoPairsMoveCharacter('"')
+inoremap <buffer> <silent> © =AutoPairsMoveCharacter(')')
+inoremap <buffer> <silent> ¨ =AutoPairsMoveCharacter('(')
+inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
+inoremap <buffer> <silent> î :call AutoPairsJump()a
+inoremap <buffer> <silent> <expr> ð AutoPairsToggle()
+inoremap <buffer> <silent> â =AutoPairsBackInsert()
+inoremap <buffer> <silent> å =AutoPairsFastWrap()
+inoremap <buffer> <silent> ý =AutoPairsMoveCharacter('}')
+inoremap <buffer> <silent> û =AutoPairsMoveCharacter('{')
+inoremap <buffer> <silent> Ý =AutoPairsMoveCharacter(']')
+inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
+inoremap <buffer> <silent>  =AutoPairsDelete()
+inoremap <buffer> <silent>   =AutoPairsSpace()
+inoremap <buffer> <silent> " =AutoPairsInsert('"')
+inoremap <buffer> <silent> ' =AutoPairsInsert('''')
+inoremap <buffer> <silent> ( =AutoPairsInsert('(')
+inoremap <buffer> <silent> ) =AutoPairsInsert(')')
+noremap <buffer> <silent> î :call AutoPairsJump()
+noremap <buffer> <silent> ð :call AutoPairsToggle()
+inoremap <buffer> <silent> [ =AutoPairsInsert('[')
+inoremap <buffer> <silent> ] =AutoPairsInsert(']')
+inoremap <buffer> <silent> ` =AutoPairsInsert('`')
+inoremap <buffer> <silent> { =AutoPairsInsert('{')
+inoremap <buffer> <silent> } =AutoPairsInsert('}')
+let &cpo=s:cpo_save
+unlet s:cpo_save
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal backupcopy=
+setlocal balloonexpr=
+setlocal nobinary
+setlocal nobreakindent
+setlocal breakindentopt=
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal cindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=j1
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
+setlocal commentstring=//%s
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+set cursorcolumn
+setlocal cursorcolumn
+set cursorline
+setlocal cursorline
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal noexpandtab
+if &filetype != 'java'
+setlocal filetype=java
+endif
+setlocal fixendofline
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+setlocal foldmethod=manual
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=croql
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal formatprg=
+setlocal grepprg=
+setlocal iminsert=0
+setlocal imsearch=-1
+setlocal include=
+setlocal includeexpr=substitute(v:fname,'\\.','/','g')
+setlocal indentexpr=GetJavaIndent()
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e,0=extends,0=implements
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+setlocal lispwords=
+setlocal nolist
+setlocal makeencoding=
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=bin,octal,hex
+set number
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=2
+setlocal noshortname
+setlocal signcolumn=auto
+setlocal nosmartindent
+setlocal softtabstop=2
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=%!Pl#Statusline(0,0)
+setlocal suffixesadd=.java
+setlocal swapfile
+setlocal synmaxcol=3000
+if &syntax != 'java'
+setlocal syntax=java
+endif
+setlocal tabstop=2
+setlocal tagcase=
+setlocal tags=
+setlocal termkey=
+setlocal termsize=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal noundofile
+setlocal undolevels=-123456
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+silent! normal! zE
+let s:l = 1 - ((0 * winheight(0) + 24) / 48)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+tabedit NumExp.java
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=1 winheight=1 winminwidth=1 winwidth=1
+argglobal
+8argu
+let s:cpo_save=&cpo
+set cpo&vim
+inoremap <buffer> <silent> <BS> =AutoPairsDelete()
+inoremap <buffer> <silent> § =AutoPairsMoveCharacter('''')
+inoremap <buffer> <silent> ¢ =AutoPairsMoveCharacter('"')
+inoremap <buffer> <silent> © =AutoPairsMoveCharacter(')')
+inoremap <buffer> <silent> ¨ =AutoPairsMoveCharacter('(')
+inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
+inoremap <buffer> <silent> î :call AutoPairsJump()a
+inoremap <buffer> <silent> <expr> ð AutoPairsToggle()
+inoremap <buffer> <silent> â =AutoPairsBackInsert()
+inoremap <buffer> <silent> å =AutoPairsFastWrap()
+inoremap <buffer> <silent> ý =AutoPairsMoveCharacter('}')
+inoremap <buffer> <silent> û =AutoPairsMoveCharacter('{')
+inoremap <buffer> <silent> Ý =AutoPairsMoveCharacter(']')
+inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
+inoremap <buffer> <silent>  =AutoPairsDelete()
+inoremap <buffer> <silent>   =AutoPairsSpace()
+inoremap <buffer> <silent> " =AutoPairsInsert('"')
+inoremap <buffer> <silent> ' =AutoPairsInsert('''')
+inoremap <buffer> <silent> ( =AutoPairsInsert('(')
+inoremap <buffer> <silent> ) =AutoPairsInsert(')')
+noremap <buffer> <silent> î :call AutoPairsJump()
+noremap <buffer> <silent> ð :call AutoPairsToggle()
+inoremap <buffer> <silent> [ =AutoPairsInsert('[')
+inoremap <buffer> <silent> ] =AutoPairsInsert(']')
+inoremap <buffer> <silent> ` =AutoPairsInsert('`')
+inoremap <buffer> <silent> { =AutoPairsInsert('{')
+inoremap <buffer> <silent> } =AutoPairsInsert('}')
+let &cpo=s:cpo_save
+unlet s:cpo_save
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal backupcopy=
+setlocal balloonexpr=
+setlocal nobinary
+setlocal nobreakindent
+setlocal breakindentopt=
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal cindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=j1
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
+setlocal commentstring=//%s
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+set cursorcolumn
+setlocal cursorcolumn
+set cursorline
+setlocal cursorline
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal noexpandtab
+if &filetype != 'java'
+setlocal filetype=java
+endif
+setlocal fixendofline
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+setlocal foldmethod=manual
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=croql
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal formatprg=
+setlocal grepprg=
+setlocal iminsert=0
+setlocal imsearch=-1
+setlocal include=
+setlocal includeexpr=substitute(v:fname,'\\.','/','g')
+setlocal indentexpr=GetJavaIndent()
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e,0=extends,0=implements
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+setlocal lispwords=
+setlocal nolist
+setlocal makeencoding=
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=bin,octal,hex
+set number
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=2
+setlocal noshortname
+setlocal signcolumn=auto
+setlocal nosmartindent
+setlocal softtabstop=2
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=%!Pl#Statusline(0,0)
+setlocal suffixesadd=.java
+setlocal swapfile
+setlocal synmaxcol=3000
+if &syntax != 'java'
+setlocal syntax=java
+endif
+setlocal tabstop=2
+setlocal tagcase=
+setlocal tags=
+setlocal termkey=
+setlocal termsize=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal noundofile
+setlocal undolevels=-123456
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+silent! normal! zE
+let s:l = 1 - ((0 * winheight(0) + 24) / 48)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+tabedit SubExp.java
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=1 winheight=1 winminwidth=1 winwidth=1
+argglobal
+9argu
+let s:cpo_save=&cpo
+set cpo&vim
+inoremap <buffer> <silent> <BS> =AutoPairsDelete()
+inoremap <buffer> <silent> § =AutoPairsMoveCharacter('''')
+inoremap <buffer> <silent> ¢ =AutoPairsMoveCharacter('"')
+inoremap <buffer> <silent> © =AutoPairsMoveCharacter(')')
+inoremap <buffer> <silent> ¨ =AutoPairsMoveCharacter('(')
+inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
+inoremap <buffer> <silent> î :call AutoPairsJump()a
+inoremap <buffer> <silent> <expr> ð AutoPairsToggle()
+inoremap <buffer> <silent> â =AutoPairsBackInsert()
+inoremap <buffer> <silent> å =AutoPairsFastWrap()
+inoremap <buffer> <silent> ý =AutoPairsMoveCharacter('}')
+inoremap <buffer> <silent> û =AutoPairsMoveCharacter('{')
+inoremap <buffer> <silent> Ý =AutoPairsMoveCharacter(']')
+inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
+inoremap <buffer> <silent>  =AutoPairsDelete()
+inoremap <buffer> <silent>   =AutoPairsSpace()
+inoremap <buffer> <silent> " =AutoPairsInsert('"')
+inoremap <buffer> <silent> ' =AutoPairsInsert('''')
+inoremap <buffer> <silent> ( =AutoPairsInsert('(')
+inoremap <buffer> <silent> ) =AutoPairsInsert(')')
+noremap <buffer> <silent> î :call AutoPairsJump()
+noremap <buffer> <silent> ð :call AutoPairsToggle()
+inoremap <buffer> <silent> [ =AutoPairsInsert('[')
+inoremap <buffer> <silent> ] =AutoPairsInsert(']')
+inoremap <buffer> <silent> ` =AutoPairsInsert('`')
+inoremap <buffer> <silent> { =AutoPairsInsert('{')
+inoremap <buffer> <silent> } =AutoPairsInsert('}')
+let &cpo=s:cpo_save
+unlet s:cpo_save
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal backupcopy=
+setlocal balloonexpr=
+setlocal nobinary
+setlocal nobreakindent
+setlocal breakindentopt=
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal cindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=j1
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
+setlocal commentstring=//%s
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+set cursorcolumn
+setlocal cursorcolumn
+set cursorline
+setlocal cursorline
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal noexpandtab
+if &filetype != 'java'
+setlocal filetype=java
+endif
+setlocal fixendofline
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+setlocal foldmethod=manual
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=croql
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal formatprg=
+setlocal grepprg=
+setlocal iminsert=0
+setlocal imsearch=-1
+setlocal include=
+setlocal includeexpr=substitute(v:fname,'\\.','/','g')
+setlocal indentexpr=GetJavaIndent()
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e,0=extends,0=implements
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+setlocal lispwords=
+setlocal nolist
+setlocal makeencoding=
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=bin,octal,hex
+set number
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=2
+setlocal noshortname
+setlocal signcolumn=auto
+setlocal nosmartindent
+setlocal softtabstop=2
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=%!Pl#Statusline(0,0)
+setlocal suffixesadd=.java
+setlocal swapfile
+setlocal synmaxcol=3000
+if &syntax != 'java'
+setlocal syntax=java
+endif
+setlocal tabstop=2
+setlocal tagcase=
+setlocal tags=
+setlocal termkey=
+setlocal termsize=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal noundofile
+setlocal undolevels=-123456
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+silent! normal! zE
+let s:l = 1 - ((0 * winheight(0) + 24) / 48)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+tabedit Driver.java
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=1 winheight=1 winminwidth=1 winwidth=1
+argglobal
+if bufexists('Driver.java') | buffer Driver.java | else | edit Driver.java | endif
+let s:cpo_save=&cpo
+set cpo&vim
+inoremap <buffer> <silent> <BS> =AutoPairsDelete()
+inoremap <buffer> <silent> § =AutoPairsMoveCharacter('''')
+inoremap <buffer> <silent> ¢ =AutoPairsMoveCharacter('"')
+inoremap <buffer> <silent> © =AutoPairsMoveCharacter(')')
+inoremap <buffer> <silent> ¨ =AutoPairsMoveCharacter('(')
+inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
+inoremap <buffer> <silent> î :call AutoPairsJump()a
+inoremap <buffer> <silent> <expr> ð AutoPairsToggle()
+inoremap <buffer> <silent> â =AutoPairsBackInsert()
+inoremap <buffer> <silent> å =AutoPairsFastWrap()
+inoremap <buffer> <silent> ý =AutoPairsMoveCharacter('}')
+inoremap <buffer> <silent> û =AutoPairsMoveCharacter('{')
+inoremap <buffer> <silent> Ý =AutoPairsMoveCharacter(']')
+inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
+inoremap <buffer> <silent>  =AutoPairsDelete()
+inoremap <buffer> <silent>   =AutoPairsSpace()
+inoremap <buffer> <silent> " =AutoPairsInsert('"')
+inoremap <buffer> <silent> ' =AutoPairsInsert('''')
+inoremap <buffer> <silent> ( =AutoPairsInsert('(')
+inoremap <buffer> <silent> ) =AutoPairsInsert(')')
+noremap <buffer> <silent> î :call AutoPairsJump()
+noremap <buffer> <silent> ð :call AutoPairsToggle()
+inoremap <buffer> <silent> [ =AutoPairsInsert('[')
+inoremap <buffer> <silent> ] =AutoPairsInsert(']')
+inoremap <buffer> <silent> ` =AutoPairsInsert('`')
+inoremap <buffer> <silent> { =AutoPairsInsert('{')
+inoremap <buffer> <silent> } =AutoPairsInsert('}')
+let &cpo=s:cpo_save
+unlet s:cpo_save
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal backupcopy=
+setlocal balloonexpr=
+setlocal nobinary
+setlocal nobreakindent
+setlocal breakindentopt=
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal cindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=j1
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
+setlocal commentstring=//%s
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+set cursorcolumn
+setlocal cursorcolumn
+set cursorline
+setlocal cursorline
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal noexpandtab
+if &filetype != 'java'
+setlocal filetype=java
+endif
+setlocal fixendofline
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+setlocal foldmethod=manual
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=croql
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal formatprg=
+setlocal grepprg=
+setlocal iminsert=0
+setlocal imsearch=-1
+setlocal include=
+setlocal includeexpr=substitute(v:fname,'\\.','/','g')
+setlocal indentexpr=GetJavaIndent()
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e,0=extends,0=implements
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+setlocal lispwords=
+setlocal nolist
+setlocal makeencoding=
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=bin,octal,hex
+set number
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=2
+setlocal noshortname
+setlocal signcolumn=auto
+setlocal nosmartindent
+setlocal softtabstop=2
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=%!Pl#Statusline(0,0)
+setlocal suffixesadd=.java
+setlocal swapfile
+setlocal synmaxcol=3000
+if &syntax != 'java'
+setlocal syntax=java
+endif
+setlocal tabstop=2
+setlocal tagcase=
+setlocal tags=
+setlocal termkey=
+setlocal termsize=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal noundofile
+setlocal undolevels=-123456
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+silent! normal! zE
+let s:l = 6 - ((5 * winheight(0) + 24) / 48)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+6
+normal! 0
+tabnext 6
 set stal=1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf

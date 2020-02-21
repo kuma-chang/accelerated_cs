@@ -1,6 +1,5 @@
 import java.util.*;
 
-
 class Env<V> {
   static class UndefinedId extends Exception {
     UndefinedId(String id) {
