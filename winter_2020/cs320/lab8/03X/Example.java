@@ -31,7 +31,11 @@ class PSet {
   }
 
   static PSet rect(Point corner1, Point corner2) {
-    throw new Error();
+    return new PSet(point -> (corner1.x <= point.x && point.x <= corner2.x && corner1.y <= point.y && point.y <= corner2.y) 
+													|| (corner2.x <= point.x && point.x <= corner1.x && corner1.y <= point.y && point.y <= corner2.y) 
+													|| (corner2.x <= point.x && point.x <= corner1.x && corner2.y <= point.y && point.y <= corner1.y) 
+													|| (corner1.x <= point.x && point.x <= corner2.x && corner2.y <= point.y && point.y <= corner1.y)); 
+    //throw new Error();
   }
 
   PSet union(PSet set) {

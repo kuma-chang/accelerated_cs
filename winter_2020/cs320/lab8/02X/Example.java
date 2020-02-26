@@ -11,14 +11,25 @@ class T {
 
   // 1. Replace the body of this function with an equivalent but purely functional version (no assignments allowed!)
   static boolean lookup(T t, int v) {
-    while (t != null)
-      if (v < t.v)
-	t = t.l;
-      else if (v > t.v)
-	t = t.r;
-      else // v == t.v
-	return true;
-    return false;
+		if(t == null)
+			return false;
+		if (v < t.v)
+			return lookup(t.l, v);
+		else if (v > t.v)
+			return lookup(t.r, v);
+		else
+			return true;
+
+		/*
+		while (t != null)
+			if (v < t.v)
+				t = t.l;
+			else if (v > t.v)
+				t = t.r;
+			else // v == t.v
+				return true;
+		return false;
+		*/
   }
 
   static T insert(T t,int v) {
@@ -34,12 +45,22 @@ class T {
 
   // 2. Fill in the body of this function. Your code must be purely functional (no assignments!)
   static T map(T t,IntUnaryOperator f) {
-    throw new Error(); // replace this
+		if(t == null)
+			return t;
+		return new T(map(t.l, f), f.applyAsInt(t.v), map(t.r, f));
+		
+   // throw new Error(); // replace this
   }
 
   // 3. Fill in the body of this function. Your code must be purely functional (no assignments!)
   static void inorder(T t,IntConsumer f) {
-    throw new Error(); // replace this
+		if(t == null)
+			return;
+		inorder(t.l, f);
+		f.accept(t.v);
+		inorder(t.r, f);
+
+   // throw new Error(); // replace this
   }
 }
 
@@ -58,27 +79,27 @@ class Example {
       t = T.insert(t,i);
     }
 
-    
-    // test membership on all values between min and max
-    for (int i = min; i <= max; i++) 
-      if (T.lookup(t,i))
-	System.out.print(i + " ");
-    System.out.println();
-    
-    // print elements in inorder (i.e. sorted)
-    // (should produce same output as above)
-    T.inorder(t,x -> System.out.print(x + " "));
-    System.out.println();
 
-    // generate a new tree in which each element value is doubled
-    T u = T.map(t, x -> x * 2);
+		// test membership on all values between min and max
+		for (int i = min; i <= max; i++) 
+			if (T.lookup(t,i))
+				System.out.print(i + " ");
+		System.out.println();
 
-    // print the new tree elements 
-    T.inorder(u,x -> System.out.print(x + " "));
-    System.out.println();
+		// print elements in inorder (i.e. sorted)
+		// (should produce same output as above)
+		T.inorder(t,x -> System.out.print(x + " "));
+		System.out.println();
 
-    // make sure the original tree has not changed
-    T.inorder(t,x -> System.out.print(x + " "));
-    System.out.println();
-  }
+		// generate a new tree in which each element value is doubled
+		T u = T.map(t, x -> x * 2);
+
+		// print the new tree elements 
+		T.inorder(u,x -> System.out.print(x + " "));
+		System.out.println();
+
+		// make sure the original tree has not changed
+		T.inorder(t,x -> System.out.print(x + " "));
+		System.out.println();
+	}
 }

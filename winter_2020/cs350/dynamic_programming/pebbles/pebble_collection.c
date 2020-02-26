@@ -6,14 +6,15 @@ int memoization_table[100000000];
 
 int max(int a, int b)
 {
-	if(a >= b)
+	if(a > b)
 		return a;
 	else
 		return b;
 }
 
-int picking_pebble_tabular(int** pebble_table, int row, int column)
+int picking_pebble_tabular(int row, int column, int pebble_table[][column])
 {
+
   int tabular_table[row][column];
 	// initializing tabular_table
 	for(int i = 0; i < row; i++)
@@ -28,23 +29,29 @@ int picking_pebble_tabular(int** pebble_table, int row, int column)
 				if(i == 0)
 					tabular_table[i][j] = pebble_table[i][j];
 				else
-					tabular_table[i][j] = tabular_table[i -1][j] + pebble_table[i][j];
+					tabular_table[i][j] = tabular_table[i - 1][j] + pebble_table[i][j];
 			}
 			else
-				tabular_table[i][j] = max(tabular_table[i - 1][j], tabular_table[i][j - 1]) + pebble_table[i][j];
-
-			// printing out the tabular_table
-			printf("The max for each spot: \n");
-			for(int i = 0; i < row; i++)
 			{
-				printf("%d: ", i);
-				for(int j = 0; j < column; j++)
-					printf("%d ", tabular_table[i][j]);
-				printf("\n");
+				if(i == 0)
+					tabular_table[i][j] = tabular_table[i][j - 1] + pebble_table[i][j];
+				else
+					tabular_table[i][j] = max(tabular_table[i - 1][j], tabular_table[i][j - 1]) + pebble_table[i][j];
 			}
 
 		}
-	return tabular_table[row][column];
+
+	// printing out the tabular_table
+	printf("The max for each spot: \n");
+	for(int i = 0; i < row; i++)
+	{
+		printf("%d: ", i);
+		for(int j = 0; j < column; j++)
+			printf("%d ", tabular_table[i][j]);
+		printf("\n");
+	}
+
+	return tabular_table[row - 1][column - 1];
 }
 
 
@@ -83,7 +90,7 @@ int main()
 
 
 
-	printf("The max number of pebble you'll be able to collect is: %d\n", picking_pebble_tabular((int**)pebble_table, row, column));
+	printf("The max number of pebble you'll be able to collect is: %d\n", picking_pebble_tabular(row, column, pebble_table));
 
 
 
