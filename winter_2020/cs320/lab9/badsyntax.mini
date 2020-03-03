@@ -1,0 +1,8 @@
+// A simple mini test program
+int i;
+i = 0;    
+// initialize
+while (i <= 10) {
+print i*i;  // print a square  
+i = i + 1;
+}

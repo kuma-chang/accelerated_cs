@@ -11,52 +11,52 @@ int max(int a, int b)
 		return b;
 }
 
-int n_choose_k_tabular(int n, int k)
+int rod_cutting_tabular(int rod_length, int* price_table)
 {
-  int tabular_table[n + 1][n + 1];
+  int tabular_table[rod_length];
 	// initializing tabular_table
-	for(int i = 0; i <= n; i++)
-		for(int j = 0; j <= n; j++)
-			tabular_table[i][j] = -1;
+	for(int i = 0; i < rod_length; i++)
+		tabular_table[i] = -1;
 
-	for(int i = 0; i <= n; i++)
-		for(int j = 0; j <= i; j++)
-			if(j <= k)
-			{
-				if(j == 0 || j == i)
-					tabular_table[i][j] = 1;
-				else
-					tabular_table[i][j] = tabular_table[i-1][j-1] + tabular_table[i-1][j];
-			}
-
-	// printing out the tabular_table
-	printf("The max for each spot: \n");
-	for(int i = 0; i <= n; i++)
+	for(int i = 0; i < rod_length; i++)
 	{
-		printf("%d: ", i);
-		for(int j = 0; j <= n; j++)
-			printf("%d ", tabular_table[i][j]);
-		printf("\n");
+		if(i == 0)
+			tabular_table[i] = price_table[0];
+		else
+			for(int j = 0; j <= i; j++)
+			{
+				if(j == 0)
+					tabular_table[i] = price_table[i-j];
+				else
+					tabular_table[i] = max(tabular_table[i], tabular_table[i-j] + tabular_table[j-1]);
+			}
 	}
 
-	return tabular_table[n][k];
+	printf("Sale price tabel:\n");
+	for(int i = 0; i < rod_length; i++)
+		printf("%d: %d\n", i + 1, tabular_table[i]);
+
+	return tabular_table[rod_length-1];
 }
 
 
 int main()
 {
-  char text[10000];
-  int n;
-	int k;
+  int rod_length;
+	rod_length = 9;
+	
+	int price_table[rod_length];
+	for(int i = 0; i < rod_length; i++)
+		price_table[i] = 0;
+	price_table[0] = 10;
+	price_table[5] = 10000;
 
-  printf("enter N: ");
-  scanf("%s", text) ;
-  n = atoi(text);
-  printf("enter K: ");
-  scanf("%s", text) ;
-  k = atoi(text);
 
-	printf("\n%d choose %d is: %d\n", n, k, n_choose_k_tabular(n,k));
+	printf("Price tabel:\n");
+	for(int i = 0; i < rod_length; i++)
+		printf("%d: %d\n", i + 1, price_table[i]);
+
+	printf("The maximum total sale price for %d long rod is: %d\n", rod_length, rod_cutting_tabular(rod_length, price_table));
 
 	return 0;
 }

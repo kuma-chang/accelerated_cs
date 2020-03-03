@@ -1,0 +1,36 @@
+int a;
+int b;
+
+a = 0;
+b = a;
+if(b < 0)
+{
+	int c;
+	c = b;
+	if(c < 0)
+	{
+		int e;
+		e = c;
+	} else if(c > 0) {
+		int f;
+		f = c;
+	} else {
+		int g;
+		g = c;
+	}
+} else {
+	int d;
+	d = b;
+	if(d < 0)
+	{
+		int h;
+		h = d;
+	} else if(d > 0) {
+		int i;
+		i = d;
+	} else {
+		int j;
+		j = d;
+	}	
+}
+
