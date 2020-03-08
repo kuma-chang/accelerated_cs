@@ -1,0 +1,16 @@
+Ch1_Ltrace: YOp92eH8
+Ch3_00_GdbIntro: tHkJJISV
+Ch3_00_GdbPX: 0x400937 OGY0MTEx 0x7845544d3059474f 0x7845544d 0x4d 84
+Ch3_00_GdbRegs: 1959958221
+Ch3_02_AsciiInstr: VAVfB2c6
+Ch3_04_FnPointer: 0x4f6566f6
+Ch3_04_LinkedList: 0x6016c0 446b6911
+Ch3_05_XorStr: uDDFQAQQ -> Bssqfvff (after xor with 37)
+Ch3_06_SwitchTable: 57092
+Ch3_07_ParamsRegs: YmNmNTk4
+Ch3_07_SegvBacktrace: NjNjYWY0
+Ch3_07_StaticStrcmp: t7CbpRh2
+Ch3_07_CanaryBypass: 56 0x400697
+Ch3_07_HijackPLT: 0x657a6040 0x655a5567
+Ch3_07_StackSmash: AABBCCDDEEFFGGHHaaaaaaaagp9W
+Ch3_08_Matrix: 404
